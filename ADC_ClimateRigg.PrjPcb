@@ -84,30 +84,13 @@ GenerateClassCluster=0
 DocumentUniqueId=JICYLDBH
 
 [Document3]
-DocumentPath=..\..\..\..\Users\Public\Documents\Altium\ADC_ClimateRigg\Level Switch.SchDoc
+DocumentPath=Main.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
 AnnotateScope=All
-AnnotateOrder=1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=JPWYZQIL
-
-[Document4]
-DocumentPath=..\..\..\..\Users\Public\Documents\Altium\ADC_ClimateRigg\Main.SchDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=0
+AnnotateOrder=-1
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
 ClassGenCCAutoEnabled=1
@@ -117,7 +100,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=NXIVJCOD
 
-[Document5]
+[Document4]
 DocumentPath=PCB1.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1

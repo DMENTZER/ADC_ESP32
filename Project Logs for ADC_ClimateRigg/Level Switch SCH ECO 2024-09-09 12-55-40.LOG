@@ -1,0 +1,3 @@
+Remove Pin=J2-24 From Net=ALRT1_IN
+Remove Pin=J3-24 From Net=ALRT2_IN
+Remove Pin=J4-24 From Net=ALRT3_IN

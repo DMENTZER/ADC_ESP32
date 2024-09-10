@@ -1,0 +1,54 @@
+Removed Member From Class: ClassName=Main Member=R?
+Change Component Designator: OldDesignator=R? NewDesignator=R1
+Change Component Designator: OldDesignator=R? NewDesignator=R2
+Change Component Designator: OldDesignator=R? NewDesignator=R3
+Change Component Designator: OldDesignator=R? NewDesignator=R4
+Change Component Designator: OldDesignator=R? NewDesignator=R5
+Change Component Designator: OldDesignator=R? NewDesignator=R6
+Change Component Designator: OldDesignator=R? NewDesignator=R7
+Change Component Designator: OldDesignator=R? NewDesignator=R8
+Change Component Designator: OldDesignator=R? NewDesignator=R9
+Change Component Designator: OldDesignator=R? NewDesignator=R10
+Change Component Designator: OldDesignator=R? NewDesignator=R11
+Change Component Designator: OldDesignator=R? NewDesignator=R12
+Change Component Designator: OldDesignator=R? NewDesignator=R13
+Change Component Designator: OldDesignator=R? NewDesignator=R14
+Change Component Designator: OldDesignator=R? NewDesignator=R15
+Change Component Designator: OldDesignator=R? NewDesignator=R16
+Change Component Designator: OldDesignator=R? NewDesignator=R17
+Change Component Designator: OldDesignator=R? NewDesignator=R18
+Change Component Designator: OldDesignator=R? NewDesignator=R19
+Change Component Designator: OldDesignator=R? NewDesignator=R20
+Change Component Designator: OldDesignator=R? NewDesignator=R21
+Change Component Designator: OldDesignator=R? NewDesignator=R22
+Add Pin To Net: Unknown Pin: Pin jump1-23
+Add Pin To Net: Unknown Pin: Pin jump1-24
+Add Pin To Net: Unknown Pin: Pin jump2-23
+Add Pin To Net: Unknown Pin: Pin jump2-24
+Add Pin To Net: Unknown Pin: Pin jump3-23
+Add Pin To Net: Unknown Pin: Pin jump3-24
+Change Class Name : Old Net Name=Main New Net Name=Main sheet
+Add Class Member: Failed to add class member : Component jump1 Solder jumper
+Add Class Member: Failed to add class member : Component jump2 Solder jumper
+Add Class Member: Failed to add class member : Component jump3 Solder jumper
+Added Member To Class: ClassName=Level Switch Member=Component R1 R0603
+Added Member To Class: ClassName=Level Switch Member=Component R2 R0603
+Added Member To Class: ClassName=Level Switch Member=Component R4 R0603
+Added Member To Class: ClassName=Level Switch Member=Component R5 R0603
+Added Member To Class: ClassName=Level Switch Member=Component R6 R0603
+Added Member To Class: ClassName=Level Switch Member=Component R7 R0603
+Added Member To Class: ClassName=Level Switch Member=Component R8 R0603
+Added Member To Class: ClassName=Level Switch Member=Component R9 R0603
+Added Member To Class: ClassName=Level Switch Member=Component R10 R0603
+Added Member To Class: ClassName=Main sheet Member=Component R11 R0603
+Added Member To Class: ClassName=Main sheet Member=Component R12 R0603
+Added Member To Class: ClassName=Main sheet Member=Component R13 R0603
+Added Member To Class: ClassName=Main sheet Member=Component R14 R0603
+Added Member To Class: ClassName=Main sheet Member=Component R15 R0603
+Added Member To Class: ClassName=Main sheet Member=Component R16 R0603
+Added Member To Class: ClassName=Main sheet Member=Component R17 R0603
+Added Member To Class: ClassName=Main sheet Member=Component R18 R0603
+Added Member To Class: ClassName=Main sheet Member=Component R19 R0603
+Added Member To Class: ClassName=Main sheet Member=Component R20 R0603
+Added Member To Class: ClassName=Main sheet Member=Component R21 R0603
+Added Member To Class: ClassName=Main sheet Member=Component R22 R0603

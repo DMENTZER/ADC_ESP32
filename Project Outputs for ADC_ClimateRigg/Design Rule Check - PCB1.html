@@ -1,0 +1,886 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD24\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2024-09-10</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">14:17:05</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc" class="file"><acronym title="C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc">C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">2</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">172</td></tr>
+</table>
+</td>
+</table><a name="IDWUVASPIX4VB2IUBHWIZJHMTFGHJR35JM3540FGFQR03ESLICTZJ"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3ARRWHWGGQFIENGYHM0IAW3VUE0513B1VHKZDUBXF23EEBZAE4AC">Design contains shelved or modified (but not repoured) polygons. The result of DRC is not correct. Recommended to restore/repour all polygons and proceed with DRC again</a></td>
+<td class="column2">2</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">2</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOJELXEEGLXORHEULSCY5FAOK5KFDTZH3BRIQ5SMAJ5VZWUVSVOM">Clearance Constraint (Gap=0.15mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDANEJ5FVSW5MVKYTQMJLARGDMHDHILGE05PV2Q3CNSW2ZOFJDFRCM">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJ3NSSTDTJJEPONEZBM4PWJASBIPIDLM0GWPQT2NC2M5MIVV1XU5I">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">96</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRQLVWJTEFWKDLL1EBG0DWA21XEAS0JXQV4SS14FONHJ4QXZYLIJP">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTXYVURPYNC2LM1WT2H54HAI5PID5YMKXSCHM1P43WGPQHVRZ4EM">Width Constraint (Min=0.2mm) (Max=0.2mm) (Preferred=0.2mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDA0DH4AWOTZEJCPDUGLRBS1YXRGGO0F3NKB3P30ORCFYRC113OPLH">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVLWL2GXR4YTSIDPY5BHVH3AKZONZRZZ32P054OMSQ1TRP0AHH3EF">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAGOQG2WWKJ02DRPEVBVCCD2W1MC42ZHXWDMG4SH0Q1UDVHDTLNDO">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJZRN35QMI44FDUF5VXIYXGPNPMPVMPFWFXX2VGENZAMBOB0RBDTL">Hole To Hole Clearance (Gap=0.1mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHH2G4EHKK4XAF3RFOETOAQZ4CLRAN31VHCP5S3G4ZCUVCMVI3SHN">Minimum Solder Mask Sliver (Gap=0.1mm) (All),(All)</a></td>
+<td class="column2">8</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEMPYAWVDO5J1PTB1LEVSOEWSSFP3CJJRMAC0SAKJ1QMAXQNNGZII">Silk To Solder Mask (Clearance=0.01mm) (IsPad),(All)</a></td>
+<td class="column2">32</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDB0S3QL4N5DFGFTE0LGIWMYQ2TZY5Y0RNG123NEIER1EE3FOBY5B">Silk to Silk (Clearance=0.01mm) (All),(All)</a></td>
+<td class="column2">28</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID04FHXU5SGLPDO5XH1EUTEV55AB2S0WRYNPG4FPOXQPCF5QRTE4ZO">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDF1RSY1HJQZEFP3HP122XBHFR5B121FWAGARLTYCPSJZEQQU24ERE">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">172</td>
+</tr>
+</table><br><a name="IDLXQ4SAGZIHV3ENFR2L5TP5LDCK3SUGHDQIWDDGLRAMHA4R0YQ0HD"><h2>Warnings</h2></a><a name="ID3ARRWHWGGQFIENGYHM0IAW3VUE0513B1VHKZDUBXF23EEBZAE4AC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Design contains shelved or modified (but not repoured) polygons. The result of DRC is not correct. Recommended to restore/repour all polygons and proceed with DRC again</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Polygon named: NONET_L02_P000 In net GND On Bottom Layer</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Polygon named: Top Layer In net GND On Top Layer</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDJ3NSSTDTJJEPONEZBM4PWJASBIPIDLM0GWPQT2NC2M5MIVV1XU5I"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4426.197mil|Location2.X=4518.764mil|Location1.Y=1613.126mil|Location2.Y=1722.504mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4426.197mil|Location2.X=4518.764mil|Location1.Y=1613.126mil|Location2.Y=1722.504mil|Absolute=True">Un-Routed Net Constraint: Net NetC10_2 Between Pad C10-2(112.852mm,41.475mm) on Top Layer And Pad R18-1(114.35mm,43.25mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4426.197mil|Location2.X=4640.457mil|Location1.Y=1458.598mil|Location2.Y=1652.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4426.197mil|Location2.X=4640.457mil|Location1.Y=1458.598mil|Location2.Y=1652.622mil|Absolute=True">Un-Routed Net Constraint: Net NetC10_2 Between Pad C10-2(112.852mm,41.475mm) on Top Layer And Pad U3-7(117.041mm,37.3mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3862.26mil|Location2.X=3968.567mil|Location1.Y=1327.693mil|Location2.Y=1466.008mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3862.26mil|Location2.X=3968.567mil|Location1.Y=1327.693mil|Location2.Y=1466.008mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad U4-8(98.928mm,36.985mm) on Top Layer And Pad C11-2(100.375mm,34.225mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4136.748mil|Location2.X=4231.362mil|Location1.Y=1631.827mil|Location2.Y=1751.047mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4136.748mil|Location2.X=4231.362mil|Location1.Y=1631.827mil|Location2.Y=1751.047mil|Absolute=True">Un-Routed Net Constraint: Net NetC12_2 Between Pad R19-1(105.5mm,43.975mm) on Top Layer And Pad C12-2(107.05mm,41.95mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4033.52mil|Location2.X=4231.362mil|Location1.Y=1465.882mil|Location2.Y=1671.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4033.52mil|Location2.X=4231.362mil|Location1.Y=1465.882mil|Location2.Y=1671.323mil|Absolute=True">Un-Routed Net Constraint: Net NetC12_2 Between Pad U4-4(103.278mm,37.485mm) on Top Layer And Pad C12-2(107.05mm,41.95mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4017.654mil|Location2.X=4102.425mil|Location1.Y=1635.764mil|Location2.Y=1752.032mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4017.654mil|Location2.X=4102.425mil|Location1.Y=1635.764mil|Location2.Y=1752.032mil|Absolute=True">Un-Routed Net Constraint: Net NetC13_2 Between Pad C13-2(102.475mm,42.05mm) on Top Layer And Pad R20-1(103.775mm,44mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4017.654mil|Location2.X=4098.606mil|Location1.Y=1485.567mil|Location2.Y=1675.26mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4017.654mil|Location2.X=4098.606mil|Location1.Y=1485.567mil|Location2.Y=1675.26mil|Absolute=True">Un-Routed Net Constraint: Net NetC13_2 Between Pad C13-2(102.475mm,42.05mm) on Top Layer And Pad U4-5(103.278mm,37.985mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3869.032mil|Location2.X=3964.63mil|Location1.Y=1629.858mil|Location2.Y=1752.032mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3869.032mil|Location2.X=3964.63mil|Location1.Y=1629.858mil|Location2.Y=1752.032mil|Absolute=True">Un-Routed Net Constraint: Net NetC14_2 Between Pad R21-1(98.7mm,44mm) on Top Layer And Pad C14-2(100.275mm,41.9mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3862.26mil|Location2.X=3964.63mil|Location1.Y=1485.567mil|Location2.Y=1669.354mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3862.26mil|Location2.X=3964.63mil|Location1.Y=1485.567mil|Location2.Y=1669.354mil|Absolute=True">Un-Routed Net Constraint: Net NetC14_2 Between Pad U4-6(98.928mm,37.985mm) on Top Layer And Pad C14-2(100.275mm,41.9mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3752.968mil|Location2.X=3831.756mil|Location1.Y=1630.843mil|Location2.Y=1752.032mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3752.968mil|Location2.X=3831.756mil|Location1.Y=1630.843mil|Location2.Y=1752.032mil|Absolute=True">Un-Routed Net Constraint: Net NetC15_2 Between Pad C15-2(95.752mm,41.925mm) on Top Layer And Pad R22-1(96.9mm,44mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3752.968mil|Location2.X=3927.346mil|Location1.Y=1465.882mil|Location2.Y=1670.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3752.968mil|Location2.X=3927.346mil|Location1.Y=1465.882mil|Location2.Y=1670.339mil|Absolute=True">Un-Routed Net Constraint: Net NetC15_2 Between Pad C15-2(95.752mm,41.925mm) on Top Layer And Pad U4-7(98.928mm,37.485mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5755.843mil|Location2.X=5838.646mil|Location1.Y=1626.906mil|Location2.Y=1739.236mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5755.843mil|Location2.X=5838.646mil|Location1.Y=1626.906mil|Location2.Y=1739.236mil|Absolute=True">Un-Routed Net Constraint: Net NetC2_2 Between Pad R11-1(146.625mm,43.675mm) on Top Layer And Pad C2-2(147.875mm,41.825mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5640.37mil|Location2.X=5838.646mil|Location1.Y=1475.252mil|Location2.Y=1666.402mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5640.37mil|Location2.X=5838.646mil|Location1.Y=1475.252mil|Location2.Y=1666.402mil|Absolute=True">Un-Routed Net Constraint: Net NetC2_2 Between Pad U2-4(144.092mm,37.723mm) on Top Layer And Pad C2-2(147.875mm,41.825mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5633.795mil|Location2.X=5721.52mil|Location1.Y=1625.921mil|Location2.Y=1737.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5633.795mil|Location2.X=5721.52mil|Location1.Y=1625.921mil|Location2.Y=1737.268mil|Absolute=True">Un-Routed Net Constraint: Net NetC3_2 Between Pad C3-2(143.525mm,41.8mm) on Top Layer And Pad R12-1(144.9mm,43.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5633.795mil|Location2.X=5705.457mil|Location1.Y=1494.937mil|Location2.Y=1665.417mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5633.795mil|Location2.X=5705.457mil|Location1.Y=1494.937mil|Location2.Y=1665.417mil|Absolute=True">Un-Routed Net Constraint: Net NetC3_2 Between Pad C3-2(143.525mm,41.8mm) on Top Layer And Pad U2-5(144.092mm,38.223mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5477.299mil|Location2.X=5555.103mil|Location1.Y=1621mil|Location2.Y=1735.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5477.299mil|Location2.X=5555.103mil|Location1.Y=1621mil|Location2.Y=1735.299mil|Absolute=True">Un-Routed Net Constraint: Net NetC4_2 Between Pad R13-1(139.55mm,43.575mm) on Top Layer And Pad C4-2(140.673mm,41.675mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5469.11mil|Location2.X=5555.103mil|Location1.Y=1494.937mil|Location2.Y=1660.496mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5469.11mil|Location2.X=5555.103mil|Location1.Y=1494.937mil|Location2.Y=1660.496mil|Absolute=True">Un-Routed Net Constraint: Net NetC4_2 Between Pad U2-6(139.742mm,38.223mm) on Top Layer And Pad C4-2(140.673mm,41.675mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5367.063mil|Location2.X=5440.024mil|Location1.Y=1618.047mil|Location2.Y=1733.331mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5367.063mil|Location2.X=5440.024mil|Location1.Y=1618.047mil|Location2.Y=1733.331mil|Absolute=True">Un-Routed Net Constraint: Net NetC5_2 Between Pad C5-2(136.75mm,41.6mm) on Top Layer And Pad R14-1(137.75mm,43.525mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5367.063mil|Location2.X=5534.197mil|Location1.Y=1475.252mil|Location2.Y=1657.543mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5367.063mil|Location2.X=5534.197mil|Location1.Y=1475.252mil|Location2.Y=1657.543mil|Absolute=True">Un-Routed Net Constraint: Net NetC5_2 Between Pad C5-2(136.75mm,41.6mm) on Top Layer And Pad U2-7(139.742mm,37.723mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4331.63mil|Location2.X=4677.228mil|Location1.Y=1297.181mil|Location2.Y=1364.236mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4331.63mil|Location2.X=4677.228mil|Location1.Y=1297.181mil|Location2.Y=1364.236mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R10-2(110.45mm,33.45mm) on Top Layer And Pad C6-2(118.375mm,34.15mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4575.37mil|Location2.X=4677.228mil|Location1.Y=1324.74mil|Location2.Y=1458.724mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4575.37mil|Location2.X=4677.228mil|Location1.Y=1324.74mil|Location2.Y=1458.724mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad U3-8(117.041mm,36.8mm) on Top Layer And Pad C6-2(118.375mm,34.15mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4864.11mil|Location2.X=4955.772mil|Location1.Y=1623.953mil|Location2.Y=1732.346mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4864.11mil|Location2.X=4955.772mil|Location1.Y=1623.953mil|Location2.Y=1732.346mil|Absolute=True">Un-Routed Net Constraint: Net NetC7_2 Between Pad R15-1(123.975mm,43.5mm) on Top Layer And Pad C7-2(125.45mm,41.75mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4746.63mil|Location2.X=4955.772mil|Location1.Y=1458.598mil|Location2.Y=1663.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4746.63mil|Location2.X=4955.772mil|Location1.Y=1458.598mil|Location2.Y=1663.449mil|Absolute=True">Un-Routed Net Constraint: Net NetC7_2 Between Pad U3-4(121.391mm,37.3mm) on Top Layer And Pad C7-2(125.45mm,41.75mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4705.724mil|Location2.X=4796.323mil|Location1.Y=1618.047mil|Location2.Y=1724.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4705.724mil|Location2.X=4796.323mil|Location1.Y=1618.047mil|Location2.Y=1724.472mil|Absolute=True">Un-Routed Net Constraint: Net NetC8_2 Between Pad C8-2(119.952mm,41.6mm) on Top Layer And Pad R16-1(121.4mm,43.3mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4705.724mil|Location2.X=4811.717mil|Location1.Y=1478.284mil|Location2.Y=1657.543mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4705.724mil|Location2.X=4811.717mil|Location1.Y=1478.284mil|Location2.Y=1657.543mil|Absolute=True">Un-Routed Net Constraint: Net NetC8_2 Between Pad C8-2(119.952mm,41.6mm) on Top Layer And Pad U3-5(121.391mm,37.8mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4552.102mil|Location2.X=4623.095mil|Location1.Y=1613.126mil|Location2.Y=1723.488mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4552.102mil|Location2.X=4623.095mil|Location1.Y=1613.126mil|Location2.Y=1723.488mil|Absolute=True">Un-Routed Net Constraint: Net NetC9_2 Between Pad R17-1(116.05mm,43.275mm) on Top Layer And Pad C9-2(117mm,41.475mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4575.37mil|Location2.X=4640.457mil|Location1.Y=1478.284mil|Location2.Y=1652.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4575.37mil|Location2.X=4640.457mil|Location1.Y=1478.284mil|Location2.Y=1652.622mil|Absolute=True">Un-Routed Net Constraint: Net NetC9_2 Between Pad C9-2(117mm,41.475mm) on Top Layer And Pad U3-6(117.041mm,37.8mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5625.882mil|Location2.X=5789.433mil|Location1.Y=1699.74mil|Location2.Y=2296.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5625.882mil|Location2.X=5789.433mil|Location1.Y=1699.74mil|Location2.Y=2296.874mil|Absolute=True">Un-Routed Net Constraint: Net NetC2_2 Between Pad J1-1(143.699mm,57.539mm) on Multi-Layer And Pad R11-1(146.625mm,43.675mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5488.205mil|Location2.X=5721.52mil|Location1.Y=1697.772mil|Location2.Y=2296.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5488.205mil|Location2.X=5721.52mil|Location1.Y=1697.772mil|Location2.Y=2296.874mil|Absolute=True">Un-Routed Net Constraint: Net NetC3_2 Between Pad J1-2(140.202mm,57.539mm) on Multi-Layer And Pad R12-1(144.9mm,43.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5350.252mil|Location2.X=5510.89mil|Location1.Y=1695.803mil|Location2.Y=2296.52mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5350.252mil|Location2.X=5510.89mil|Location1.Y=1695.803mil|Location2.Y=2296.52mil|Absolute=True">Un-Routed Net Constraint: Net NetC4_2 Between Pad J1-3(136.698mm,57.53mm) on Multi-Layer And Pad R13-1(139.55mm,43.575mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5212.457mil|Location2.X=5440.024mil|Location1.Y=1693.835mil|Location2.Y=2296.953mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5212.457mil|Location2.X=5440.024mil|Location1.Y=1693.835mil|Location2.Y=2296.953mil|Absolute=True">Un-Routed Net Constraint: Net NetC5_2 Between Pad J1-4(133.198mm,57.541mm) on Multi-Layer And Pad R14-1(137.75mm,43.525mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4846.118mil|Location2.X=4909.236mil|Location1.Y=1692.85mil|Location2.Y=2298.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4846.118mil|Location2.X=4909.236mil|Location1.Y=1692.85mil|Location2.Y=2298.559mil|Absolute=True">Un-Routed Net Constraint: Net NetC7_2 Between Pad J2-1(123.893mm,57.582mm) on Multi-Layer And Pad R15-1(123.975mm,43.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4708.441mil|Location2.X=4796.323mil|Location1.Y=1684.976mil|Location2.Y=2298.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4708.441mil|Location2.X=4796.323mil|Location1.Y=1684.976mil|Location2.Y=2298.559mil|Absolute=True">Un-Routed Net Constraint: Net NetC8_2 Between Pad J2-2(120.396mm,57.582mm) on Multi-Layer And Pad R16-1(121.4mm,43.3mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4552.102mil|Location2.X=4633.606mil|Location1.Y=1683.992mil|Location2.Y=2298.205mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4552.102mil|Location2.X=4633.606mil|Location1.Y=1683.992mil|Location2.Y=2298.205mil|Absolute=True">Un-Routed Net Constraint: Net NetC9_2 Between Pad R17-1(116.05mm,43.275mm) on Top Layer And Pad J2-3(116.892mm,57.573mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4432.693mil|Location2.X=4518.764mil|Location1.Y=1683.008mil|Location2.Y=2298.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4432.693mil|Location2.X=4518.764mil|Location1.Y=1683.008mil|Location2.Y=2298.638mil|Absolute=True">Un-Routed Net Constraint: Net NetC10_2 Between Pad J2-4(113.392mm,57.584mm) on Multi-Layer And Pad R18-1(114.35mm,43.25mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4090.071mil|Location2.X=4170.339mil|Location1.Y=1711.551mil|Location2.Y=2303.913mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4090.071mil|Location2.X=4170.339mil|Location1.Y=1711.551mil|Location2.Y=2303.913mil|Absolute=True">Un-Routed Net Constraint: Net NetC12_2 Between Pad J3-1(104.689mm,57.718mm) on Multi-Layer And Pad R19-1(105.5mm,43.975mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3952.394mil|Location2.X=4102.425mil|Location1.Y=1712.535mil|Location2.Y=2303.913mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3952.394mil|Location2.X=4102.425mil|Location1.Y=1712.535mil|Location2.Y=2303.913mil|Absolute=True">Un-Routed Net Constraint: Net NetC13_2 Between Pad J3-2(101.192mm,57.718mm) on Multi-Layer And Pad R20-1(103.775mm,44mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3814.441mil|Location2.X=3902.622mil|Location1.Y=1712.535mil|Location2.Y=2303.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3814.441mil|Location2.X=3902.622mil|Location1.Y=1712.535mil|Location2.Y=2303.559mil|Absolute=True">Un-Routed Net Constraint: Net NetC14_2 Between Pad J3-3(97.688mm,57.709mm) on Multi-Layer And Pad R21-1(98.7mm,44mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3676.646mil|Location2.X=3831.756mil|Location1.Y=1712.535mil|Location2.Y=2303.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3676.646mil|Location2.X=3831.756mil|Location1.Y=1712.535mil|Location2.Y=2303.992mil|Absolute=True">Un-Routed Net Constraint: Net NetC15_2 Between Pad J3-4(94.188mm,57.72mm) on Multi-Layer And Pad R22-1(96.9mm,44mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4399.543mil|Location2.X=4731.465mil|Location1.Y=2024.543mil|Location2.Y=2176.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4399.543mil|Location2.X=4731.465mil|Location1.Y=2024.543mil|Location2.Y=2176.244mil|Absolute=True">Un-Routed Net Constraint: Net NetJUMP1_1 Between Pad JUMP1-1(112.1mm,51.775mm) on Top Layer And Pad U1-18(119.228mm,54.325mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4399.543mil|Location2.X=5239.236mil|Location1.Y=1474.347mil|Location2.Y=2021.165mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4399.543mil|Location2.X=5239.236mil|Location1.Y=1474.347mil|Location2.Y=2021.165mil|Absolute=True">Un-Routed Net Constraint: Net ALRT1_IN Between Pad JUMP1-2(112.1mm,50.986mm) on Top Layer And Pad R5-1(132.65mm,37.95mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4304.071mil|Location2.X=4631.465mil|Location1.Y=2026.079mil|Location2.Y=2176.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4304.071mil|Location2.X=4631.465mil|Location1.Y=2026.079mil|Location2.Y=2176.244mil|Absolute=True">Un-Routed Net Constraint: Net NetJUMP2_1 Between Pad JUMP2-1(109.675mm,51.814mm) on Top Layer And Pad U1-19(116.688mm,54.325mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4304.071mil|Location2.X=4968.567mil|Location1.Y=1472.378mil|Location2.Y=2022.701mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4304.071mil|Location2.X=4968.567mil|Location1.Y=1472.378mil|Location2.Y=2022.701mil|Absolute=True">Un-Routed Net Constraint: Net ALRT2_IN Between Pad JUMP2-2(109.675mm,51.025mm) on Top Layer And Pad R7-1(125.775mm,37.9mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4199.74mil|Location2.X=4531.465mil|Location1.Y=2024.11mil|Location2.Y=2176.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4199.74mil|Location2.X=4531.465mil|Location1.Y=2024.11mil|Location2.Y=2176.244mil|Absolute=True">Un-Routed Net Constraint: Net NetJUMP3_1 Between Pad JUMP3-1(107.025mm,51.764mm) on Top Layer And Pad U1-20(114.148mm,54.325mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4199.74mil|Location2.X=4303.212mil|Location1.Y=1503.874mil|Location2.Y=2020.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4199.74mil|Location2.X=4303.212mil|Location1.Y=1503.874mil|Location2.Y=2020.732mil|Absolute=True">Un-Routed Net Constraint: Net ALRT3_IN Between Pad JUMP3-2(107.025mm,50.975mm) on Top Layer And Pad R9-1(108.875mm,38.7mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5099.346mil|Location2.X=5187.992mil|Location1.Y=1998.953mil|Location2.Y=2040.354mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5099.346mil|Location2.X=5187.992mil|Location1.Y=1998.953mil|Location2.Y=2040.354mil|Absolute=True">Un-Routed Net Constraint: Net +3.3V Between Pad R1-2(130.025mm,51.2mm) on Top Layer And Pad Q1-1(131.375mm,51.425mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5099.346mil|Location2.X=5187.992mil|Location1.Y=1934.055mil|Location2.Y=1975.457mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5099.346mil|Location2.X=5187.992mil|Location1.Y=1934.055mil|Location2.Y=1975.457mil|Absolute=True">Un-Routed Net Constraint: Net SDA 3.3V Between Pad R1-1(130.025mm,49.75mm) on Top Layer And Pad Q1-2(131.375mm,49.525mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5156.496mil|Location2.X=5431.465mil|Location1.Y=1934.055mil|Location2.Y=2176.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5156.496mil|Location2.X=5431.465mil|Location1.Y=1934.055mil|Location2.Y=2176.244mil|Absolute=True">Un-Routed Net Constraint: Net SDA 3.3V Between Pad Q1-2(131.375mm,49.525mm) on Top Layer And Pad U1-11(137.008mm,54.325mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5250.984mil|Location2.X=5338.646mil|Location1.Y=1940.882mil|Location2.Y=2002.953mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5250.984mil|Location2.X=5338.646mil|Location1.Y=1940.882mil|Location2.Y=2002.953mil|Absolute=True">Un-Routed Net Constraint: Net SDA Between Pad Q1-3(133.775mm,50.475mm) on Top Layer And Pad R2-1(135.1mm,49.725mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4800.197mil|Location2.X=5138.842mil|Location1.Y=1966.535mil|Location2.Y=2032.543mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4800.197mil|Location2.X=5138.842mil|Location1.Y=1966.535mil|Location2.Y=2032.543mil|Absolute=True">Un-Routed Net Constraint: Net +3.3V Between Pad Q2-1(122.325mm,50.35mm) on Top Layer And Pad R1-2(130.025mm,51.2mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4744.031mil|Location2.X=4831.693mil|Location1.Y=1954.661mil|Location2.Y=1998.032mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4744.031mil|Location2.X=4831.693mil|Location1.Y=1954.661mil|Location2.Y=1998.032mil|Absolute=True">Un-Routed Net Constraint: Net +3.3V Between Pad R3-2(121mm,50.075mm) on Top Layer And Pad Q2-1(122.325mm,50.35mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4744.031mil|Location2.X=4831.693mil|Location1.Y=1891.732mil|Location2.Y=1931.165mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4744.031mil|Location2.X=4831.693mil|Location1.Y=1891.732mil|Location2.Y=1931.165mil|Absolute=True">Un-Routed Net Constraint: Net SCL 3.3V Between Pad R3-1(121mm,48.625mm) on Top Layer And Pad Q2-2(122.325mm,48.45mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4800.197mil|Location2.X=5131.465mil|Location1.Y=1891.732mil|Location2.Y=2176.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4800.197mil|Location2.X=5131.465mil|Location1.Y=1891.732mil|Location2.Y=2176.244mil|Absolute=True">Un-Routed Net Constraint: Net SCL 3.3V Between Pad Q2-2(122.325mm,48.45mm) on Top Layer And Pad U1-14(129.388mm,54.325mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4894.685mil|Location2.X=4983.331mil|Location1.Y=1901.512mil|Location2.Y=1960.63mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4894.685mil|Location2.X=4983.331mil|Location1.Y=1901.512mil|Location2.Y=1960.63mil|Absolute=True">Un-Routed Net Constraint: Net SCL Between Pad Q2-3(124.725mm,49.4mm) on Top Layer And Pad R4-1(126.075mm,48.725mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4575.37mil|Location2.X=4926.181mil|Location1.Y=1399.543mil|Location2.Y=1960.63mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4575.37mil|Location2.X=4926.181mil|Location1.Y=1399.543mil|Location2.Y=1960.63mil|Absolute=True">Un-Routed Net Constraint: Net SCL Between Pad U3-10(117.041mm,35.8mm) on Top Layer And Pad Q2-3(124.725mm,49.4mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5001.968mil|Location2.X=5304.134mil|Location1.Y=1424.213mil|Location2.Y=1457.677mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5001.968mil|Location2.X=5304.134mil|Location1.Y=1424.213mil|Location2.Y=1457.677mil|Absolute=True">Un-Routed Net Constraint: Net +3.3V Between Pad Q4-1(127.45mm,36.575mm) on Top Layer And Pad Q3-1(134.325mm,36.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5262.732mil|Location2.X=5304.134mil|Location1.Y=1426.181mil|Location2.Y=1513.842mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5262.732mil|Location2.X=5304.134mil|Location1.Y=1426.181mil|Location2.Y=1513.842mil|Absolute=True">Un-Routed Net Constraint: Net +3.3V Between Pad R5-2(134.1mm,37.95mm) on Top Layer And Pad Q3-1(134.325mm,36.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5197.834mil|Location2.X=5239.236mil|Location1.Y=1426.181mil|Location2.Y=1513.842mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5197.834mil|Location2.X=5239.236mil|Location1.Y=1426.181mil|Location2.Y=1513.842mil|Absolute=True">Un-Routed Net Constraint: Net ALRT1_IN Between Pad Q3-2(132.425mm,36.625mm) on Top Layer And Pad R5-1(132.65mm,37.95mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5207.614mil|Location2.X=5266.732mil|Location1.Y=1275.528mil|Location2.Y=1363.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5207.614mil|Location2.X=5266.732mil|Location1.Y=1275.528mil|Location2.Y=1363.189mil|Absolute=True">Un-Routed Net Constraint: Net ALRT1_OUT Between Pad R6-1(132.7mm,32.9mm) on Top Layer And Pad Q3-3(133.375mm,34.225mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5235.236mil|Location2.X=5705.457mil|Location1.Y=1331.693mil|Location2.Y=1455.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5235.236mil|Location2.X=5705.457mil|Location1.Y=1331.693mil|Location2.Y=1455.693mil|Absolute=True">Un-Routed Net Constraint: Net ALRT1_OUT Between Pad Q3-3(133.375mm,34.225mm) on Top Layer And Pad U2-2(144.092mm,36.723mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4992.063mil|Location2.X=5033.465mil|Location1.Y=1424.213mil|Location2.Y=1511.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4992.063mil|Location2.X=5033.465mil|Location1.Y=1424.213mil|Location2.Y=1511.874mil|Absolute=True">Un-Routed Net Constraint: Net +3.3V Between Pad R7-2(127.225mm,37.9mm) on Top Layer And Pad Q4-1(127.45mm,36.575mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4927.165mil|Location2.X=4968.567mil|Location1.Y=1424.213mil|Location2.Y=1511.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4927.165mil|Location2.X=4968.567mil|Location1.Y=1424.213mil|Location2.Y=1511.874mil|Absolute=True">Un-Routed Net Constraint: Net ALRT2_IN Between Pad Q4-2(125.55mm,36.575mm) on Top Layer And Pad R7-1(125.775mm,37.9mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4935.961mil|Location2.X=4996.063mil|Location1.Y=1271.591mil|Location2.Y=1361.22mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4935.961mil|Location2.X=4996.063mil|Location1.Y=1271.591mil|Location2.Y=1361.22mil|Absolute=True">Un-Routed Net Constraint: Net ALRT2_OUT Between Pad R8-1(125.8mm,32.8mm) on Top Layer And Pad Q4-3(126.5mm,34.175mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4746.63mil|Location2.X=4996.063mil|Location1.Y=1329.725mil|Location2.Y=1439.039mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4746.63mil|Location2.X=4996.063mil|Location1.Y=1329.725mil|Location2.Y=1439.039mil|Absolute=True">Un-Routed Net Constraint: Net ALRT2_OUT Between Pad U3-2(121.391mm,36.3mm) on Top Layer And Pad Q4-3(126.5mm,34.175mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4336.378mil|Location2.X=5025.654mil|Location1.Y=1455.197mil|Location2.Y=1511.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4336.378mil|Location2.X=5025.654mil|Location1.Y=1455.197mil|Location2.Y=1511.874mil|Absolute=True">Un-Routed Net Constraint: Net +3.3V Between Pad Q5-1(110.544mm,37.362mm) on Top Layer And Pad R7-2(127.225mm,37.9mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4326.708mil|Location2.X=4367.874mil|Location1.Y=1455.197mil|Location2.Y=1543.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4326.708mil|Location2.X=4367.874mil|Location1.Y=1455.197mil|Location2.Y=1543.37mil|Absolute=True">Un-Routed Net Constraint: Net +3.3V Between Pad R9-2(110.325mm,38.7mm) on Top Layer And Pad Q5-1(110.544mm,37.362mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4336.378mil|Location2.X=4631.465mil|Location1.Y=1101.315mil|Location2.Y=1486.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4336.378mil|Location2.X=4631.465mil|Location1.Y=1101.315mil|Location2.Y=1486.693mil|Absolute=True">Un-Routed Net Constraint: Net +3.3V Between Pad Q5-1(110.544mm,37.362mm) on Top Layer And Pad U1-2(116.688mm,28.925mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4261.575mil|Location2.X=4303.212mil|Location1.Y=1455.197mil|Location2.Y=1543.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4261.575mil|Location2.X=4303.212mil|Location1.Y=1455.197mil|Location2.Y=1543.37mil|Absolute=True">Un-Routed Net Constraint: Net ALRT3_IN Between Pad Q5-2(108.644mm,37.362mm) on Top Layer And Pad R9-1(108.875mm,38.7mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4274.543mil|Location2.X=4330.472mil|Location1.Y=1297.181mil|Location2.Y=1392.205mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4274.543mil|Location2.X=4330.472mil|Location1.Y=1297.181mil|Location2.Y=1392.205mil|Absolute=True">Un-Routed Net Constraint: Net ALRT3_OUT Between Pad R10-1(109mm,33.45mm) on Top Layer And Pad Q5-3(109.594mm,34.962mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4033.52mil|Location2.X=4330.472mil|Location1.Y=1360.709mil|Location2.Y=1446.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4033.52mil|Location2.X=4330.472mil|Location1.Y=1360.709mil|Location2.Y=1446.323mil|Absolute=True">Un-Routed Net Constraint: Net ALRT3_OUT Between Pad U4-2(103.278mm,36.485mm) on Top Layer And Pad Q5-3(109.594mm,34.962mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4248.425mil|Location2.X=4594mil|Location1.Y=1216.929mil|Location2.Y=1228.047mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4248.425mil|Location2.X=4594mil|Location1.Y=1216.929mil|Location2.Y=1228.047mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R10-2(110.45mm,33.45mm) on Top Layer And Track (114.148mm,28.652mm)(116.212mm,26.588mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5630.843mil|Location2.X=5846.52mil|Location1.Y=1697.772mil|Location2.Y=1739.236mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5630.843mil|Location2.X=5846.52mil|Location1.Y=1697.772mil|Location2.Y=1739.236mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R12-2(143.45mm,43.625mm) on Top Layer And Pad R11-2(148.075mm,43.675mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4992.063mil|Location2.X=5138.842mil|Location1.Y=1472.378mil|Location2.Y=2032.543mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4992.063mil|Location2.X=5138.842mil|Location1.Y=1472.378mil|Location2.Y=2032.543mil|Absolute=True">Un-Routed Net Constraint: Net +3.3V Between Pad R7-2(127.225mm,37.9mm) on Top Layer And Pad R1-2(130.025mm,51.2mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5534.386mil|Location2.X=5664.433mil|Location1.Y=1695.803mil|Location2.Y=1737.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5534.386mil|Location2.X=5664.433mil|Location1.Y=1695.803mil|Location2.Y=1737.268mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R13-2(141mm,43.575mm) on Top Layer And Pad R12-2(143.45mm,43.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5349.347mil|Location2.X=5567.977mil|Location1.Y=1693.835mil|Location2.Y=1735.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5349.347mil|Location2.X=5567.977mil|Location1.Y=1693.835mil|Location2.Y=1735.299mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R14-2(136.3mm,43.525mm) on Top Layer And Pad R13-2(141mm,43.575mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5469.11mil|Location2.X=5567.977mil|Location1.Y=1455.567mil|Location2.Y=1735.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5469.11mil|Location2.X=5567.977mil|Location1.Y=1455.567mil|Location2.Y=1735.299mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad U2-8(139.742mm,37.223mm) on Top Layer And Pad R13-2(141mm,43.575mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5299.15mil|Location2.X=5382.937mil|Location1.Y=1693.835mil|Location2.Y=2031.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5299.15mil|Location2.X=5382.937mil|Location1.Y=1693.835mil|Location2.Y=2031.559mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R2-2(135.1mm,51.175mm) on Top Layer And Pad R14-2(136.3mm,43.525mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4705.646mil|Location2.X=4954.788mil|Location1.Y=1684.976mil|Location2.Y=1732.346mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4705.646mil|Location2.X=4954.788mil|Location1.Y=1684.976mil|Location2.Y=1732.346mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R16-2(119.95mm,43.3mm) on Top Layer And Pad R15-2(125.425mm,43.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4921.197mil|Location2.X=4983.331mil|Location1.Y=1692.85mil|Location2.Y=1992.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4921.197mil|Location2.X=4983.331mil|Location1.Y=1692.85mil|Location2.Y=1992.189mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R15-2(125.425mm,43.5mm) on Top Layer And Pad R4-2(126.075mm,50.175mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4609.189mil|Location2.X=4739.236mil|Location1.Y=1683.992mil|Location2.Y=1724.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4609.189mil|Location2.X=4739.236mil|Location1.Y=1683.992mil|Location2.Y=1724.472mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R17-2(117.5mm,43.275mm) on Top Layer And Pad R16-2(119.95mm,43.3mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4428.087mil|Location2.X=4642.78mil|Location1.Y=1683.008mil|Location2.Y=1723.488mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4428.087mil|Location2.X=4642.78mil|Location1.Y=1683.008mil|Location2.Y=1723.488mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R18-2(112.9mm,43.25mm) on Top Layer And Pad R17-2(117.5mm,43.275mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4575.37mil|Location2.X=4642.78mil|Location1.Y=1438.913mil|Location2.Y=1723.488mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4575.37mil|Location2.X=4642.78mil|Location1.Y=1438.913mil|Location2.Y=1723.488mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad U3-8(117.041mm,36.8mm) on Top Layer And Pad R17-2(117.5mm,43.275mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4193.835mil|Location2.X=4461.677mil|Location1.Y=1683.008mil|Location2.Y=1751.047mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4193.835mil|Location2.X=4461.677mil|Location1.Y=1683.008mil|Location2.Y=1751.047mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R19-2(106.95mm,43.975mm) on Top Layer And Pad R18-2(112.9mm,43.25mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4011.748mil|Location2.X=4227.425mil|Location1.Y=1711.551mil|Location2.Y=1752.032mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4011.748mil|Location2.X=4227.425mil|Location1.Y=1711.551mil|Location2.Y=1752.032mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R20-2(102.325mm,44mm) on Top Layer And Pad R19-2(106.95mm,43.975mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3926.118mil|Location2.X=4045.339mil|Location1.Y=1712.535mil|Location2.Y=1752.032mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3926.118mil|Location2.X=4045.339mil|Location1.Y=1712.535mil|Location2.Y=1752.032mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R21-2(100.15mm,44mm) on Top Layer And Pad R20-2(102.325mm,44mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5299.15mil|Location2.X=5534.197mil|Location1.Y=1435.882mil|Location2.Y=1974.473mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5299.15mil|Location2.X=5534.197mil|Location1.Y=1435.882mil|Location2.Y=1974.473mil|Absolute=True">Un-Routed Net Constraint: Net SDA Between Pad R2-1(135.1mm,49.725mm) on Top Layer And Pad U2-9(139.742mm,36.723mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3741.079mil|Location2.X=3959.709mil|Location1.Y=1712.535mil|Location2.Y=1752.032mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3741.079mil|Location2.X=3959.709mil|Location1.Y=1712.535mil|Location2.Y=1752.032mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R22-2(95.45mm,44mm) on Top Layer And Pad R21-2(100.15mm,44mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3862.26mil|Location2.X=3959.709mil|Location1.Y=1446.197mil|Location2.Y=1752.032mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3862.26mil|Location2.X=3959.709mil|Location1.Y=1446.197mil|Location2.Y=1752.032mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad U4-8(98.928mm,36.985mm) on Top Layer And Pad R21-2(100.15mm,44mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4993.047mil|Location2.X=5298.291mil|Location1.Y=1271.591mil|Location2.Y=1315.024mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4993.047mil|Location2.X=5298.291mil|Location1.Y=1271.591mil|Location2.Y=1315.024mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R8-2(127.25mm,32.8mm) on Top Layer And Pad R6-2(134.15mm,32.9mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5181.496mil|Location2.X=5658.071mil|Location1.Y=1195.276mil|Location2.Y=1469.094mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5181.496mil|Location2.X=5658.071mil|Location1.Y=1195.276mil|Location2.Y=1469.094mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad R6-2(134.15mm,32.9mm) on Top Layer And Track (141.175mm,34.775mm)(141.35mm,34.6mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4746.63mil|Location2.X=5026.638mil|Location1.Y=1271.591mil|Location2.Y=1419.354mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4746.63mil|Location2.X=5026.638mil|Location1.Y=1271.591mil|Location2.Y=1419.354mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad U3-1(121.391mm,35.8mm) on Top Layer And Pad R8-2(127.25mm,32.8mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4575.37mil|Location2.X=5534.197mil|Location1.Y=1399.543mil|Location2.Y=1436.008mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4575.37mil|Location2.X=5534.197mil|Location1.Y=1399.543mil|Location2.Y=1436.008mil|Absolute=True">Un-Routed Net Constraint: Net SCL Between Pad U3-10(117.041mm,35.8mm) on Top Layer And Pad U2-10(139.742mm,36.223mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4575.37mil|Location2.X=5534.197mil|Location1.Y=1419.228mil|Location2.Y=1455.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4575.37mil|Location2.X=5534.197mil|Location1.Y=1419.228mil|Location2.Y=1455.693mil|Absolute=True">Un-Routed Net Constraint: Net SDA Between Pad U3-9(117.041mm,36.3mm) on Top Layer And Pad U2-9(139.742mm,36.723mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4033.52mil|Location2.X=4640.457mil|Location1.Y=1399.543mil|Location2.Y=1426.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4033.52mil|Location2.X=4640.457mil|Location1.Y=1399.543mil|Location2.Y=1426.638mil|Absolute=True">Un-Routed Net Constraint: Net SCL Between Pad U4-1(103.278mm,35.985mm) on Top Layer And Pad U3-10(117.041mm,35.8mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3862.26mil|Location2.X=4640.457mil|Location1.Y=1419.228mil|Location2.Y=1446.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3862.26mil|Location2.X=4640.457mil|Location1.Y=1419.228mil|Location2.Y=1446.323mil|Absolute=True">Un-Routed Net Constraint: Net SDA Between Pad U4-9(98.928mm,36.485mm) on Top Layer And Pad U3-9(117.041mm,36.3mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3862.26mil|Location2.X=4098.606mil|Location1.Y=1406.827mil|Location2.Y=1426.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3862.26mil|Location2.X=4098.606mil|Location1.Y=1406.827mil|Location2.Y=1426.638mil|Absolute=True">Un-Routed Net Constraint: Net SCL Between Pad U4-10(98.928mm,35.985mm) on Top Layer And Pad U4-1(103.278mm,35.985mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDRQLVWJTEFWKDLL1EBG0DWA21XEAS0JXQV4SS14FONHJ4QXZYLIJP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Modified Polygon (Allow modified: No), (Allow shelved: No)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2892mil|Location2.X=6599mil|Location1.Y=1000mil|Location2.Y=2573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2892mil|Location2.X=6599mil|Location1.Y=1000mil|Location2.Y=2573mil|Absolute=True">Modified Polygon: Polygon Shelved  (NONET_L02_P000) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2892mil|Location2.X=6599mil|Location1.Y=1000mil|Location2.Y=2573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2892mil|Location2.X=6599mil|Location1.Y=1000mil|Location2.Y=2573mil|Absolute=True">Modified Polygon: Polygon Shelved  (Top Layer) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDAGOQG2WWKJ02DRPEVBVCCD2W1MC42ZHXWDMG4SH0Q1UDVHDTLNDO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6411.32mil|Location2.X=6530.68mil|Location1.Y=1068.32mil|Location2.Y=1187.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6411.32mil|Location2.X=6530.68mil|Location1.Y=1068.32mil|Location2.Y=1187.68mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Pad Free-6(164.363mm,28.651mm) on Multi-Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6406.32mil|Location2.X=6535.68mil|Location1.Y=2380.32mil|Location2.Y=2509.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6406.32mil|Location2.X=6535.68mil|Location1.Y=2380.32mil|Location2.Y=2509.68mil|Absolute=True">Hole Size Constraint: (3.254mm &gt; 2.54mm) Pad Free-6(164.363mm,62.103mm) on Multi-Layer Actual Hole Size = 3.254mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.32mil|Location2.X=3079.68mil|Location1.Y=1068.32mil|Location2.Y=1187.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.32mil|Location2.X=3079.68mil|Location1.Y=1068.32mil|Location2.Y=1187.68mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Pad Free-6(76.708mm,28.651mm) on Multi-Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.32mil|Location2.X=3079.68mil|Location1.Y=2385.32mil|Location2.Y=2504.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.32mil|Location2.X=3079.68mil|Location1.Y=2385.32mil|Location2.Y=2504.68mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Pad Free-6(76.708mm,62.103mm) on Multi-Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDHH2G4EHKK4XAF3RFOETOAQZ4CLRAN31VHCP5S3G4ZCUVCMVI3SHN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.1mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5104.251mil|Location2.X=5109.438mil|Location1.Y=2294.61mil|Location2.Y=2299.797mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5104.251mil|Location2.X=5109.438mil|Location1.Y=2294.61mil|Location2.Y=2299.797mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.013mm &lt; 0.1mm) Between Pad J1-5(129.703mm,57.541mm) on Multi-Layer And Via (129.718mm,58.657mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.013mm] / [Bottom Solder] Mask Sliver [0.013mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4324.374mil|Location2.X=4329.561mil|Location1.Y=2296.201mil|Location2.Y=2301.388mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4324.374mil|Location2.X=4329.561mil|Location1.Y=2296.201mil|Location2.Y=2301.388mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.008mm &lt; 0.1mm) Between Pad J2-5(109.897mm,57.584mm) on Multi-Layer And Via (109.908mm,58.695mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.008mm] / [Bottom Solder] Mask Sliver [0.008mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3568.628mil|Location2.X=3573.814mil|Location1.Y=2301.751mil|Location2.Y=2306.938mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3568.628mil|Location2.X=3573.814mil|Location1.Y=2301.751mil|Location2.Y=2306.938mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.018mm &lt; 0.1mm) Between Pad J3-5(90.693mm,57.72mm) on Multi-Layer And Via (90.715mm,58.841mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.018mm] / [Bottom Solder] Mask Sliver [0.018mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4424.635mil|Location2.X=4429.822mil|Location1.Y=2020.261mil|Location2.Y=2025.448mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4424.635mil|Location2.X=4429.822mil|Location1.Y=2020.261mil|Location2.Y=2025.448mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.086mm &lt; 0.1mm) Between Pad JUMP1-1(112.1mm,51.775mm) on Top Layer And Pad JUMP1-2(112.1mm,50.986mm) on Top Layer [Top Solder] Mask Sliver [0.086mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4329.162mil|Location2.X=4334.349mil|Location1.Y=2021.796mil|Location2.Y=2026.983mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4329.162mil|Location2.X=4334.349mil|Location1.Y=2021.796mil|Location2.Y=2026.983mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.086mm &lt; 0.1mm) Between Pad JUMP2-1(109.675mm,51.814mm) on Top Layer And Pad JUMP2-2(109.675mm,51.025mm) on Top Layer [Top Solder] Mask Sliver [0.086mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4224.832mil|Location2.X=4230.019mil|Location1.Y=2019.828mil|Location2.Y=2025.015mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4224.832mil|Location2.X=4230.019mil|Location1.Y=2019.828mil|Location2.Y=2025.015mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.086mm &lt; 0.1mm) Between Pad JUMP3-1(107.025mm,51.764mm) on Top Layer And Pad JUMP3-2(107.025mm,50.975mm) on Top Layer [Top Solder] Mask Sliver [0.086mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4810.713mil|Location2.X=4815.9mil|Location1.Y=1446.225mil|Location2.Y=1451.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4810.713mil|Location2.X=4815.9mil|Location1.Y=1446.225mil|Location2.Y=1451.412mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.081mm &lt; 0.1mm) Between Pad U3-3(121.391mm,36.8mm) on Top Layer And Via (122.6mm,36.8mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.081mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4029.731mil|Location2.X=4036.582mil|Location1.Y=1444.642mil|Location2.Y=1451.77mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4029.731mil|Location2.X=4036.582mil|Location1.Y=1444.642mil|Location2.Y=1451.77mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.076mm &lt; 0.1mm) Between Pad U4-2(103.278mm,36.485mm) on Top Layer And Via (102.151mm,36.966mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.076mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDEMPYAWVDO5J1PTB1LEVSOEWSSFP3CJJRMAC0SAKJ1QMAXQNNGZII"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.01mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6149.382mil|Location2.X=6150.644mil|Location1.Y=2176.928mil|Location2.Y=2178.19mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6149.382mil|Location2.X=6150.644mil|Location1.Y=2176.928mil|Location2.Y=2178.19mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad J6-1(157.099mm,55.753mm) on Multi-Layer And Track (154.108mm,55.31mm)(160.995mm,55.31mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5240.726mil|Location2.X=5241.989mil|Location1.Y=1362.558mil|Location2.Y=1363.82mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5240.726mil|Location2.X=5241.989mil|Location1.Y=1362.558mil|Location2.Y=1363.82mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad Q3-3(133.375mm,34.225mm) on Top Layer And Text "R6" (132.131mm,34.315mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4993.863mil|Location2.X=4995.125mil|Location1.Y=1360.589mil|Location2.Y=1361.852mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4993.863mil|Location2.X=4995.125mil|Location1.Y=1360.589mil|Location2.Y=1361.852mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad Q4-3(126.5mm,34.175mm) on Top Layer And Text "R8" (125.222mm,34.214mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4294.607mil|Location2.X=4295.869mil|Location1.Y=1391.573mil|Location2.Y=1392.836mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4294.607mil|Location2.X=4295.869mil|Location1.Y=1391.573mil|Location2.Y=1392.836mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad Q5-3(109.594mm,34.962mm) on Top Layer And Text "R10" (108.433mm,34.849mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5759.211mil|Location2.X=5760.474mil|Location1.Y=1712.086mil|Location2.Y=1713.348mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5759.211mil|Location2.X=5760.474mil|Location1.Y=1712.086mil|Location2.Y=1713.348mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R11-1(146.625mm,43.675mm) on Top Layer And Text "C2" (146.152mm,43.485mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5818.964mil|Location2.X=5820.227mil|Location1.Y=1711.369mil|Location2.Y=1712.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5818.964mil|Location2.X=5820.227mil|Location1.Y=1711.369mil|Location2.Y=1712.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R11-2(148.075mm,43.675mm) on Top Layer And Text "C2" (146.152mm,43.485mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5690.964mil|Location2.X=5692.227mil|Location1.Y=1733.167mil|Location2.Y=1734.429mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5690.964mil|Location2.X=5692.227mil|Location1.Y=1733.167mil|Location2.Y=1734.429mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R12-1(144.9mm,43.625mm) on Top Layer And Text "C3" (142.9mm,43.205mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5651.607mil|Location2.X=5652.869mil|Location1.Y=1733.167mil|Location2.Y=1734.429mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5651.607mil|Location2.X=5652.869mil|Location1.Y=1733.167mil|Location2.Y=1734.429mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R12-2(143.45mm,43.625mm) on Top Layer And Text "C3" (142.9mm,43.205mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5480.668mil|Location2.X=5481.931mil|Location1.Y=1705.369mil|Location2.Y=1706.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5480.668mil|Location2.X=5481.931mil|Location1.Y=1705.369mil|Location2.Y=1706.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R13-1(139.55mm,43.575mm) on Top Layer And Text "C4" (138.938mm,43.332mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5534.964mil|Location2.X=5536.227mil|Location1.Y=1725.047mil|Location2.Y=1726.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5534.964mil|Location2.X=5536.227mil|Location1.Y=1725.047mil|Location2.Y=1726.31mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R13-2(141mm,43.575mm) on Top Layer And Text "C4" (138.938mm,43.332mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5411.726mil|Location2.X=5412.989mil|Location1.Y=1728.7mil|Location2.Y=1729.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5411.726mil|Location2.X=5412.989mil|Location1.Y=1728.7mil|Location2.Y=1729.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R14-1(137.75mm,43.525mm) on Top Layer And Text "C5" (136.474mm,43.256mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5372.369mil|Location2.X=5373.631mil|Location1.Y=1728.7mil|Location2.Y=1729.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5372.369mil|Location2.X=5373.631mil|Location1.Y=1728.7mil|Location2.Y=1729.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R14-2(136.3mm,43.525mm) on Top Layer And Text "C5" (136.474mm,43.256mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4867.809mil|Location2.X=4869.072mil|Location1.Y=1725.086mil|Location2.Y=1726.349mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4867.809mil|Location2.X=4869.072mil|Location1.Y=1725.086mil|Location2.Y=1726.349mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R15-1(123.975mm,43.5mm) on Top Layer And Text "C7" (122.992mm,43mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4769.405mil|Location2.X=4770.667mil|Location1.Y=1722.047mil|Location2.Y=1723.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4769.405mil|Location2.X=4770.667mil|Location1.Y=1722.047mil|Location2.Y=1723.31mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R16-1(121.4mm,43.3mm) on Top Layer And Text "C8" (119.659mm,43.256mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4710.369mil|Location2.X=4711.631mil|Location1.Y=1719.841mil|Location2.Y=1721.104mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4710.369mil|Location2.X=4711.631mil|Location1.Y=1719.841mil|Location2.Y=1721.104mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R16-2(119.95mm,43.3mm) on Top Layer And Text "C8" (119.659mm,43.256mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4555.471mil|Location2.X=4556.734mil|Location1.Y=1697.369mil|Location2.Y=1698.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4555.471mil|Location2.X=4556.734mil|Location1.Y=1697.369mil|Location2.Y=1698.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R17-1(116.05mm,43.275mm) on Top Layer And Text "C9" (115.265mm,43.129mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4514.133mil|Location2.X=4515.395mil|Location1.Y=1697.369mil|Location2.Y=1698.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4514.133mil|Location2.X=4515.395mil|Location1.Y=1697.369mil|Location2.Y=1698.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R18-1(114.35mm,43.25mm) on Top Layer And Text "C10" (112.573mm,43.129mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4431.369mil|Location2.X=4432.631mil|Location1.Y=1717.873mil|Location2.Y=1719.135mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4431.369mil|Location2.X=4432.631mil|Location1.Y=1717.873mil|Location2.Y=1719.135mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R18-2(112.9mm,43.25mm) on Top Layer And Text "C10" (112.573mm,43.129mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4145.369mil|Location2.X=4146.631mil|Location1.Y=1749.167mil|Location2.Y=1750.429mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4145.369mil|Location2.X=4146.631mil|Location1.Y=1749.167mil|Location2.Y=1750.429mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R19-1(105.5mm,43.975mm) on Top Layer And Text "C12" (105.308mm,43.612mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4197.203mil|Location2.X=4198.466mil|Location1.Y=1716.369mil|Location2.Y=1717.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4197.203mil|Location2.X=4198.466mil|Location1.Y=1716.369mil|Location2.Y=1717.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R19-2(106.95mm,43.975mm) on Top Layer And Text "C12" (105.308mm,43.612mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4072.204mil|Location2.X=4073.466mil|Location1.Y=1720.369mil|Location2.Y=1721.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4072.204mil|Location2.X=4073.466mil|Location1.Y=1720.369mil|Location2.Y=1721.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R20-1(103.775mm,44mm) on Top Layer And Text "C13" (102.184mm,43.713mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4022.369mil|Location2.X=4023.631mil|Location1.Y=1747.4mil|Location2.Y=1748.663mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4022.369mil|Location2.X=4023.631mil|Location1.Y=1747.4mil|Location2.Y=1748.663mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R20-2(102.325mm,44mm) on Top Layer And Text "C13" (102.184mm,43.713mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3879.602mil|Location2.X=3880.865mil|Location1.Y=1747.4mil|Location2.Y=1748.663mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3879.602mil|Location2.X=3880.865mil|Location1.Y=1747.4mil|Location2.Y=1748.663mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R21-1(98.7mm,44mm) on Top Layer And Text "C14" (98.552mm,43.561mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3929.487mil|Location2.X=3930.749mil|Location1.Y=1714.369mil|Location2.Y=1715.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3929.487mil|Location2.X=3930.749mil|Location1.Y=1714.369mil|Location2.Y=1715.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R21-2(100.15mm,44mm) on Top Layer And Text "C14" (98.552mm,43.561mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3801.534mil|Location2.X=3802.797mil|Location1.Y=1715.369mil|Location2.Y=1716.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3801.534mil|Location2.X=3802.797mil|Location1.Y=1715.369mil|Location2.Y=1716.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R22-1(96.9mm,44mm) on Top Layer And Text "C15" (95.479mm,43.586mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3758.369mil|Location2.X=3759.631mil|Location1.Y=1748.167mil|Location2.Y=1749.429mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3758.369mil|Location2.X=3759.631mil|Location1.Y=1748.167mil|Location2.Y=1749.429mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R22-2(95.45mm,44mm) on Top Layer And Text "C15" (95.479mm,43.586mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5210.607mil|Location2.X=5211.869mil|Location1.Y=1498.928mil|Location2.Y=1500.191mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5210.607mil|Location2.X=5211.869mil|Location1.Y=1498.928mil|Location2.Y=1500.191mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R5-1(132.65mm,37.95mm) on Top Layer And Text "Q3" (131.699mm,37.922mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4939.607mil|Location2.X=4940.869mil|Location1.Y=1496.928mil|Location2.Y=1498.191mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4939.607mil|Location2.X=4940.869mil|Location1.Y=1496.928mil|Location2.Y=1498.191mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R7-1(125.775mm,37.9mm) on Top Layer And Text "Q4" (124.816mm,37.871mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4274.607mil|Location2.X=4275.869mil|Location1.Y=1527.928mil|Location2.Y=1529.191mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4274.607mil|Location2.X=4275.869mil|Location1.Y=1527.928mil|Location2.Y=1529.191mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad R9-1(108.875mm,38.7mm) on Top Layer And Text "Q5" (107.925mm,38.659mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5298.369mil|Location2.X=5299.631mil|Location1.Y=2104.73mil|Location2.Y=2105.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5298.369mil|Location2.X=5299.631mil|Location1.Y=2104.73mil|Location2.Y=2105.992mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad U1-12(134.468mm,54.325mm) on Multi-Layer And Text "R2" (134.595mm,52.654mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5181.607mil|Location2.X=5182.869mil|Location1.Y=2105.641mil|Location2.Y=2106.904mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5181.607mil|Location2.X=5182.869mil|Location1.Y=2105.641mil|Location2.Y=2106.904mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad U1-13(131.928mm,54.325mm) on Multi-Layer And Text "Q1" (130.962mm,53.061mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5098.369mil|Location2.X=5099.631mil|Location1.Y=2104.73mil|Location2.Y=2105.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5098.369mil|Location2.X=5099.631mil|Location1.Y=2104.73mil|Location2.Y=2105.992mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad U1-14(129.388mm,54.325mm) on Multi-Layer And Text "R1" (129.515mm,52.68mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDB0S3QL4N5DFGFTE0LGIWMYQ2TZY5Y0RNG123NEIER1EE3FOBY5B"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.01mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4537.369mil|Location2.X=4538.631mil|Location1.Y=1730.167mil|Location2.Y=1731.429mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4537.369mil|Location2.X=4538.631mil|Location1.Y=1730.167mil|Location2.Y=1731.429mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C10" (112.573mm,43.129mm) on Top Overlay And Text "C9" (115.265mm,43.129mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4476.731mil|Location2.X=4477.993mil|Location1.Y=1713.936mil|Location2.Y=1715.198mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4476.731mil|Location2.X=4477.993mil|Location1.Y=1713.936mil|Location2.Y=1715.198mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C10" (112.573mm,43.129mm) on Top Overlay And Track (113.525mm,43.55mm)(113.725mm,43.55mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4185.392mil|Location2.X=4186.655mil|Location1.Y=1718.857mil|Location2.Y=1720.119mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4185.392mil|Location2.X=4186.655mil|Location1.Y=1718.857mil|Location2.Y=1720.119mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C12" (105.308mm,43.612mm) on Top Overlay And Track (106.125mm,43.675mm)(106.325mm,43.675mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4185.392mil|Location2.X=4186.655mil|Location1.Y=1742.479mil|Location2.Y=1743.742mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4185.392mil|Location2.X=4186.655mil|Location1.Y=1742.479mil|Location2.Y=1743.742mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C12" (105.308mm,43.612mm) on Top Overlay And Track (106.125mm,44.275mm)(106.325mm,44.275mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4060.392mil|Location2.X=4061.655mil|Location1.Y=1719.841mil|Location2.Y=1721.104mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4060.392mil|Location2.X=4061.655mil|Location1.Y=1719.841mil|Location2.Y=1721.104mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C13" (102.184mm,43.713mm) on Top Overlay And Track (102.95mm,43.7mm)(103.15mm,43.7mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3971.203mil|Location2.X=3972.465mil|Location1.Y=1753.726mil|Location2.Y=1754.989mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3971.203mil|Location2.X=3972.465mil|Location1.Y=1753.726mil|Location2.Y=1754.989mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C14" (98.552mm,43.561mm) on Top Overlay And Track (101.079mm,43.747mm)(101.079mm,50.267mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3909.802mil|Location2.X=3911.064mil|Location1.Y=1719.841mil|Location2.Y=1721.104mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3909.802mil|Location2.X=3911.064mil|Location1.Y=1719.841mil|Location2.Y=1721.104mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C14" (98.552mm,43.561mm) on Top Overlay And Track (99.325mm,43.7mm)(99.525mm,43.7mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3909.802mil|Location2.X=3911.064mil|Location1.Y=1743.463mil|Location2.Y=1744.726mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3909.802mil|Location2.X=3911.064mil|Location1.Y=1743.463mil|Location2.Y=1744.726mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C14" (98.552mm,43.561mm) on Top Overlay And Track (99.325mm,44.3mm)(99.525mm,44.3mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3781.849mil|Location2.X=3783.112mil|Location1.Y=1719.841mil|Location2.Y=1721.104mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3781.849mil|Location2.X=3783.112mil|Location1.Y=1719.841mil|Location2.Y=1721.104mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C15" (95.479mm,43.586mm) on Top Overlay And Track (96.075mm,43.7mm)(96.275mm,43.7mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.607mil|Location2.X=3785.869mil|Location1.Y=1743.463mil|Location2.Y=1744.726mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.607mil|Location2.X=3785.869mil|Location1.Y=1743.463mil|Location2.Y=1744.726mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C15" (95.479mm,43.586mm) on Top Overlay And Track (96.075mm,44.3mm)(96.275mm,44.3mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5796.613mil|Location2.X=5797.875mil|Location1.Y=1707.046mil|Location2.Y=1708.308mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5796.613mil|Location2.X=5797.875mil|Location1.Y=1707.046mil|Location2.Y=1708.308mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C2" (146.152mm,43.485mm) on Top Overlay And Track (147.25mm,43.375mm)(147.45mm,43.375mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5804.487mil|Location2.X=5805.749mil|Location1.Y=1730.668mil|Location2.Y=1731.93mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5804.487mil|Location2.X=5805.749mil|Location1.Y=1730.668mil|Location2.Y=1731.93mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C2" (146.152mm,43.485mm) on Top Overlay And Track (147.25mm,43.975mm)(147.45mm,43.975mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5671.613mil|Location2.X=5672.875mil|Location1.Y=1705.078mil|Location2.Y=1706.34mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5671.613mil|Location2.X=5672.875mil|Location1.Y=1705.078mil|Location2.Y=1706.34mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C3" (142.9mm,43.205mm) on Top Overlay And Track (144.075mm,43.325mm)(144.275mm,43.325mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5525.944mil|Location2.X=5527.206mil|Location1.Y=1703.109mil|Location2.Y=1704.371mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5525.944mil|Location2.X=5527.206mil|Location1.Y=1703.109mil|Location2.Y=1704.371mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C4" (138.938mm,43.332mm) on Top Overlay And Track (140.175mm,43.275mm)(140.375mm,43.275mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5525.944mil|Location2.X=5527.206mil|Location1.Y=1726.731mil|Location2.Y=1727.994mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5525.944mil|Location2.X=5527.206mil|Location1.Y=1726.731mil|Location2.Y=1727.994mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C4" (138.938mm,43.332mm) on Top Overlay And Track (140.175mm,43.875mm)(140.375mm,43.875mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5390.117mil|Location2.X=5391.379mil|Location1.Y=1701.141mil|Location2.Y=1702.403mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5390.117mil|Location2.X=5391.379mil|Location1.Y=1701.141mil|Location2.Y=1702.403mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C5" (136.474mm,43.256mm) on Top Overlay And Track (136.925mm,43.225mm)(137.125mm,43.225mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4907.167mil|Location2.X=4908.429mil|Location1.Y=1723.778mil|Location2.Y=1725.041mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4907.167mil|Location2.X=4908.429mil|Location1.Y=1723.778mil|Location2.Y=1725.041mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C7" (122.992mm,43mm) on Top Overlay And Track (124.6mm,43.8mm)(124.8mm,43.8mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4749.726mil|Location2.X=4750.989mil|Location1.Y=1715.904mil|Location2.Y=1717.167mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4749.726mil|Location2.X=4750.989mil|Location1.Y=1715.904mil|Location2.Y=1717.167mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C8" (119.659mm,43.256mm) on Top Overlay And Track (120.575mm,43.6mm)(120.775mm,43.6mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4592.682mil|Location2.X=4594.326mil|Location1.Y=1693.159mil|Location2.Y=1694.802mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4592.682mil|Location2.X=4594.326mil|Location1.Y=1693.159mil|Location2.Y=1694.802mil|Absolute=True">Silk To Silk Clearance Constraint: (0.004mm &lt; 0.01mm) Between Text "C9" (115.265mm,43.129mm) on Top Overlay And Track (116.675mm,42.975mm)(116.875mm,42.975mm) on Top Overlay Silk Text to Silk Clearance [0.004mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4600.747mil|Location2.X=4602.009mil|Location1.Y=1714.92mil|Location2.Y=1716.182mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4600.747mil|Location2.X=4602.009mil|Location1.Y=1714.92mil|Location2.Y=1716.182mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "C9" (115.265mm,43.129mm) on Top Overlay And Track (116.675mm,43.575mm)(116.875mm,43.575mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4799.369mil|Location2.X=4800.631mil|Location1.Y=2068.726mil|Location2.Y=2069.989mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4799.369mil|Location2.X=4800.631mil|Location1.Y=2068.726mil|Location2.Y=2069.989mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "Q2" (121.92mm,51.994mm) on Top Overlay And Text "R3" (120.498mm,51.562mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5249.964mil|Location2.X=5251.227mil|Location1.Y=1505.274mil|Location2.Y=1506.537mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5249.964mil|Location2.X=5251.227mil|Location1.Y=1505.274mil|Location2.Y=1506.537mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "Q3" (131.699mm,37.922mm) on Top Overlay And Track (133.275mm,38.25mm)(133.475mm,38.25mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4975.747mil|Location2.X=4977.009mil|Location1.Y=1503.306mil|Location2.Y=1504.568mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4975.747mil|Location2.X=4977.009mil|Location1.Y=1503.306mil|Location2.Y=1504.568mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "Q4" (124.816mm,37.871mm) on Top Overlay And Track (126.4mm,38.2mm)(126.6mm,38.2mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4313.964mil|Location2.X=4315.227mil|Location1.Y=1534.802mil|Location2.Y=1536.064mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4313.964mil|Location2.X=4315.227mil|Location1.Y=1534.802mil|Location2.Y=1536.064mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "Q5" (107.925mm,38.659mm) on Top Overlay And Track (109.5mm,39mm)(109.7mm,39mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4268.369mil|Location2.X=4269.631mil|Location1.Y=1387.636mil|Location2.Y=1388.899mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4268.369mil|Location2.X=4269.631mil|Location1.Y=1387.636mil|Location2.Y=1388.899mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "R10" (108.433mm,34.849mm) on Top Overlay And Track (108.044mm,35.262mm)(108.819mm,35.262mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4366.762mil|Location2.X=4368.025mil|Location1.Y=1387.636mil|Location2.Y=1388.899mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4366.762mil|Location2.X=4368.025mil|Location1.Y=1387.636mil|Location2.Y=1388.899mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "R10" (108.433mm,34.849mm) on Top Overlay And Track (110.369mm,35.262mm)(111.144mm,35.262mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5201.369mil|Location2.X=5202.631mil|Location1.Y=1358.621mil|Location2.Y=1359.883mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5201.369mil|Location2.X=5202.631mil|Location1.Y=1358.621mil|Location2.Y=1359.883mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "R6" (132.131mm,34.315mm) on Top Overlay And Track (131.825mm,34.525mm)(132.6mm,34.525mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4929.369mil|Location2.X=4930.631mil|Location1.Y=1356.652mil|Location2.Y=1357.915mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4929.369mil|Location2.X=4930.631mil|Location1.Y=1356.652mil|Location2.Y=1357.915mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.01mm) Between Text "R8" (125.222mm,34.214mm) on Top Overlay And Track (124.95mm,34.475mm)(125.725mm,34.475mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID04FHXU5SGLPDO5XH1EUTEV55AB2S0WRYNPG4FPOXQPCF5QRTE4ZO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4819.335mil|Location2.X=4840.609mil|Location1.Y=1382.327mil|Location2.Y=1412.71mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4819.335mil|Location2.X=4840.609mil|Location1.Y=1382.327mil|Location2.Y=1412.71mil|Absolute=True">Net Antennae: Track (122.6mm,35.3mm)(122.6mm,36.8mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4676.555mil|Location2.X=4715.108mil|Location1.Y=1186.398mil|Location2.Y=1245.382mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Dev\Altium\ADC_ESP32\ADC_ESP32\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4676.555mil|Location2.X=4715.108mil|Location1.Y=1186.398mil|Location2.Y=1245.382mil|Absolute=True">Net Antennae: Via (119.175mm,30.525mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

@@ -1,0 +1,53 @@
+Change Component Description : Designator=R1 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R2 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R3 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R4 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R5 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R6 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R7 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R8 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R9 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R10 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R11 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R12 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R13 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R14 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R15 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R16 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R17 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R18 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R19 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R20 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R21 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change Component Description : Designator=R22 Old Description=???? 10KO ± 1.00% 0.1W ± 100ppm/? 0603 New Description=
+Change component parameters: Designator = "R1" ("R1"); Footprint = "RES 0603"; UniqueID = "\LIKXQZAA" ("\LIKXQZAA")
+Change component parameters: Designator = "R2" ("R2"); Footprint = "RES 0603"; UniqueID = "\RXZGVIBD" ("\RXZGVIBD")
+Change component parameters: Designator = "R3" ("R3"); Footprint = "RES 0603"; UniqueID = "\BIAFZPLB" ("\BIAFZPLB")
+Change component parameters: Designator = "R4" ("R4"); Footprint = "RES 0603"; UniqueID = "\MDAGPWQO" ("\MDAGPWQO")
+Change component parameters: Designator = "R5" ("R5"); Footprint = "RES 0603"; UniqueID = "\EKSSZEMP" ("\EKSSZEMP")
+Change component parameters: Designator = "R6" ("R6"); Footprint = "RES 0603"; UniqueID = "\AHDLEJAO" ("\AHDLEJAO")
+Change component parameters: Designator = "R7" ("R7"); Footprint = "RES 0603"; UniqueID = "\UUNHPHUO" ("\UUNHPHUO")
+Change component parameters: Designator = "R8" ("R8"); Footprint = "RES 0603"; UniqueID = "\DKFWDOSQ" ("\DKFWDOSQ")
+Change component parameters: Designator = "R9" ("R9"); Footprint = "RES 0603"; UniqueID = "\ASKIVTRC" ("\ASKIVTRC")
+Change component parameters: Designator = "R10" ("R10"); Footprint = "RES 0603"; UniqueID = "\QOMDSJHI" ("\QOMDSJHI")
+Change component parameters: Designator = "R11" ("R11"); Footprint = "RES 0603"; UniqueID = "\OLHCYUSR" ("\OLHCYUSR")
+Change component parameters: Designator = "R12" ("R12"); Footprint = "RES 0603"; UniqueID = "\SEDDZAHV" ("\SEDDZAHV")
+Change component parameters: Designator = "R13" ("R13"); Footprint = "RES 0603"; UniqueID = "\CIFEWZZX" ("\CIFEWZZX")
+Change component parameters: Designator = "R14" ("R14"); Footprint = "RES 0603"; UniqueID = "\MRRQSTQX" ("\MRRQSTQX")
+Change component parameters: Designator = "R15" ("R15"); Footprint = "RES 0603"; UniqueID = "\ZKSQNJXI" ("\ZKSQNJXI")
+Change component parameters: Designator = "R16" ("R16"); Footprint = "RES 0603"; UniqueID = "\BLWDKYGV" ("\BLWDKYGV")
+Change component parameters: Designator = "R17" ("R17"); Footprint = "RES 0603"; UniqueID = "\ZGJNITBM" ("\ZGJNITBM")
+Change component parameters: Designator = "R18" ("R18"); Footprint = "RES 0603"; UniqueID = "\EBQNPEYD" ("\EBQNPEYD")
+Change component parameters: Designator = "R19" ("R19"); Footprint = "RES 0603"; UniqueID = "\VPDRHNGR" ("\VPDRHNGR")
+Change component parameters: Designator = "R20" ("R20"); Footprint = "RES 0603"; UniqueID = "\TWYJAERS" ("\TWYJAERS")
+Change component parameters: Designator = "R21" ("R21"); Footprint = "RES 0603"; UniqueID = "\IQTEEXPV" ("\IQTEEXPV")
+Change component parameters: Designator = "R22" ("R22"); Footprint = "RES 0603"; UniqueID = "\SYUIVCEA" ("\SYUIVCEA")
+Added Pin To Net: NetName=NetJUMP1_1 Pin=JUMP1-1
+Added Pin To Net: NetName=NetJUMP1_1 Pin=U1-18
+Added Net: Name=NetJUMP1_1
+Added Pin To Net: NetName=NetJUMP2_1 Pin=JUMP2-1
+Added Pin To Net: NetName=NetJUMP2_1 Pin=U1-19
+Added Net: Name=NetJUMP2_1
+Added Pin To Net: NetName=NetJUMP3_1 Pin=JUMP3-1
+Added Pin To Net: NetName=NetJUMP3_1 Pin=U1-20
+Added Net: Name=NetJUMP3_1

@@ -1,0 +1,3 @@
+Remove Pin=JUMP1-2 From Net=ALRT1_OUT
+Remove Pin=JUMP2-2 From Net=ALRT2_OUT
+Remove Pin=JUMP3-2 From Net=ALRT3_OUT

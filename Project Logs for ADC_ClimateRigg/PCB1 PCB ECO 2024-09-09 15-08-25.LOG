@@ -1,0 +1,3 @@
+Added Pin To Net: NetName=ALRT1_OUT Pin=JUMP1-2
+Added Pin To Net: NetName=ALRT2_OUT Pin=JUMP2-2
+Added Pin To Net: NetName=ALRT3_OUT Pin=JUMP3-2

@@ -134,6 +134,10 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=ESAYVRAM
 
+[GeneratedDocument1]
+DocumentPath=Project Outputs for ADC_ClimateRigg\Design Rule Check - PCB1.html
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Sources
 ParameterCount=0
@@ -1345,14 +1349,20 @@ ModelType11=PCBLIB
 ModelName11=FP-SOT23-MFG
 ModelUpdate11=1
 ModelType12=PCBLIB
-ModelName12=Kontakt 2P 5.08
+ModelName12=jumper
 ModelUpdate12=1
 ModelType13=PCBLIB
-ModelName13=Kontakt 5P 3.5
+ModelName13=Kontakt 2P 5.08
 ModelUpdate13=1
 ModelType14=PCBLIB
-ModelName14=TSSOP50P490X110-10N ADS1115
+ModelName14=Kontakt 5P 3.5
 ModelUpdate14=1
+ModelType15=PCBLIB
+ModelName15=RES 0603
+ModelUpdate15=1
+ModelType16=PCBLIB
+ModelName16=TSSOP50P490X110-10N ADS1115
+ModelUpdate16=1
 
 [DatabaseUpdateOptions]
 SelectedOnly=0

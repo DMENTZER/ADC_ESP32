@@ -1,0 +1,33 @@
+Removed Member From Class: ClassName=Main sheet Member=R1
+Removed Member From Class: ClassName=Main sheet Member=R2
+Removed Member From Class: ClassName=Main sheet Member=R3
+Removed Member From Class: ClassName=Main sheet Member=R4
+Removed Member From Class: ClassName=Main sheet Member=R5
+Removed Member From Class: ClassName=Main sheet Member=R6
+Removed Member From Class: ClassName=Main sheet Member=R7
+Removed Member From Class: ClassName=Main sheet Member=R8
+Removed Member From Class: ClassName=Main sheet Member=R9
+Removed Member From Class: ClassName=Main sheet Member=R10
+Removed Member From Class: ClassName=Level Switch Member=R13
+Removed Member From Class: ClassName=Level Switch Member=R14
+Removed Member From Class: ClassName=Level Switch Member=R15
+Removed Member From Class: ClassName=Level Switch Member=R16
+Removed Member From Class: ClassName=Level Switch Member=R17
+Removed Member From Class: ClassName=Level Switch Member=R18
+Removed Member From Class: ClassName=Level Switch Member=R19
+Removed Member From Class: ClassName=Level Switch Member=R20
+Removed Member From Class: ClassName=Level Switch Member=R21
+Removed Member From Class: ClassName=Level Switch Member=R22
+Added Component: Designator=JUMP1(jumper)
+Added Component: Designator=JUMP2(jumper)
+Added Component: Designator=JUMP3(jumper)
+Add Pin To Net: Unknown Pin: Pin JUMP1-23
+Add Pin To Net: Unknown Pin: Pin JUMP1-24
+Add Pin To Net: Unknown Pin: Pin JUMP2-23
+Add Pin To Net: Unknown Pin: Pin JUMP2-24
+Add Pin To Net: Unknown Pin: Pin JUMP3-23
+Add Pin To Net: Unknown Pin: Pin JUMP3-24
+Added Member To Class: ClassName=Main sheet Member=Component JUMP1 Solder jumper
+Added Member To Class: ClassName=Main sheet Member=Component JUMP2 Solder jumper
+Added Member To Class: ClassName=Main sheet Member=Component JUMP3 Solder jumper
+Added Member To Class: ClassName=Level Switch Member=Component R3 R0603

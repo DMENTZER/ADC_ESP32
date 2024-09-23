@@ -1,1 +1,2 @@
-Record=TopLevelDocument|FileName=Sheet1.SchDoc|SheetNumber=1
+Record=TopLevelDocument|FileName=Level Switch.SchDoc|SheetNumber=2
+Record=NoMainPathDocument|SourceDocument=Level Switch.SchDoc|FileName=Main sheet.SchDoc|SheetNumber=1

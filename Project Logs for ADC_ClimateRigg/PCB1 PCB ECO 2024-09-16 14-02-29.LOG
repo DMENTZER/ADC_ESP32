@@ -1,0 +1,85 @@
+Change Component Comment : Designator=R14 Old Comment=10k New Comment=3.3k EVAP
+Change Component Comment : Designator=R13 Old Comment=10k New Comment=3.3k HEX
+Change Component Comment : Designator=R15 Old Comment=10k New Comment=5.1k
+Change Component Comment : Designator=R12 Old Comment=10k New Comment=5.1k MTS
+Change Component Comment : Designator=R11 Old Comment=10k New Comment= 9.1k ATS
+Change Component Comment : Designator=R16 Old Comment=10k New Comment=DTS_2
+Change Component Comment : Designator=C12 Old Comment=C0603 New Comment=10uf
+Change Component Comment : Designator=R1 Old Comment=R0603 New Comment=10k
+Change Component Comment : Designator=R2 Old Comment=R0603 New Comment=10k
+Change Component Comment : Designator=R3 Old Comment=R0603 New Comment=10k
+Change Component Comment : Designator=R4 Old Comment=R0603 New Comment=10k
+Change Component Comment : Designator=R5 Old Comment=R0603 New Comment=10k
+Change Component Comment : Designator=R6 Old Comment=R0603 New Comment=10k
+Change Component Comment : Designator=R8 Old Comment=R0603 New Comment=10k
+Change Component Comment : Designator=R9 Old Comment=R0603 New Comment=10k
+Change Component Comment : Designator=R10 Old Comment=R0603 New Comment=10k
+Change Component Comment : Designator=R17 Old Comment=R0603 New Comment=DTS_3
+Change Component Comment : Designator=R18 Old Comment=R0603 New Comment=DTS_4
+Change Component Comment : Designator=R19 Old Comment=R0603 New Comment=DTS_5
+Change Component Comment : Designator=R20 Old Comment=R0603 New Comment=DTS_6
+Change Component Comment : Designator=R21 Old Comment=R0603 New Comment=DTS_7
+Change Component Comment : Designator=R22 Old Comment=R0603 New Comment=DTS_8
+Change Component Designator: OldDesignator=U2 NewDesignator=ADC 1
+Change Component Designator: OldDesignator=U3 NewDesignator=ADC 2
+Change Component Designator: OldDesignator=U4 NewDesignator=ADC 3
+Change Component Description : Designator=R1 Old Description= New Description=C25804
+Change Component Description : Designator=R2 Old Description= New Description=C25804
+Change Component Description : Designator=R3 Old Description= New Description=C25804
+Change Component Description : Designator=R4 Old Description= New Description=C25804
+Change Component Description : Designator=R5 Old Description= New Description=C25804
+Change Component Description : Designator=R6 Old Description= New Description=C25804
+Change Component Description : Designator=R7 Old Description= New Description=C25804
+Change Component Description : Designator=R8 Old Description= New Description=C25804
+Change Component Description : Designator=R9 Old Description= New Description=C25804
+Change Component Description : Designator=R10 Old Description= New Description=C25804
+Change Component Description : Designator=R15 Old Description= New Description=DTS_1
+Thermistor: 101k
+R15: 5.1k
+Change Component Description : Designator=R16 Old Description= New Description=DTS_2
+Thermistor: 101k
+R16: 5.1k
+Change Component Description : Designator=R17 Old Description= New Description=DTS_3
+Thermistor: 101k
+R17: 5.1k
+Change Component Description : Designator=R18 Old Description= New Description=DTS_4
+Thermistor: 101k
+R18: 5.1k
+Change Component Description : Designator=R19 Old Description= New Description=DTS_5
+Thermistor: 101k
+R19: 5.1k
+Change Component Description : Designator=R20 Old Description= New Description=DTS_6
+Thermistor: 101k
+R20: 5.1k
+Change Component Description : Designator=R21 Old Description= New Description=DTS_7
+Thermistor: 101k
+R21: 5.1k
+Change Component Description : Designator=R22 Old Description= New Description=DTS_8
+Thermistor: 101k
+R22: 5.1k
+Change Component Description : Designator=R14 Old Description= New Description=EVAP
+Thermistor: 96k
+R14: 3.3k
+Change Component Description : Designator=R13 Old Description= New Description=HEX
+Thermistor: 96k
+R13: 3.3k
+Change Component Description : Designator=R12 Old Description= New Description=MTS
+Thermistor: 103k
+R12: 5.1k
+Change Component Description : Designator=R11 Old Description=0603WAF1002T5E New Description=ATS
+Thermistor: 270-333k
+R11: 9.1k
+Change component parameters: Designator = "C1" ("C1"); Footprint = "Cap 0603"; UniqueID = "\XEKLHXUS" ("\XEKLHXUS")
+Change component parameters (AddParameter): Name = "Parameter 1"; Value = ""; VariantName = "[No Variations]"
+Change Net Name : Old Net Name=NetC2_2 New Net Name=NetADC 1_4
+Change Net Name : Old Net Name=NetC3_2 New Net Name=NetADC 1_5
+Change Net Name : Old Net Name=NetC4_2 New Net Name=NetADC 1_6
+Change Net Name : Old Net Name=NetC5_2 New Net Name=NetADC 1_7
+Change Net Name : Old Net Name=NetC7_2 New Net Name=NetADC 2_4
+Change Net Name : Old Net Name=NetC8_2 New Net Name=NetADC 2_5
+Change Net Name : Old Net Name=NetC9_2 New Net Name=NetADC 2_6
+Change Net Name : Old Net Name=NetC10_2 New Net Name=NetADC 2_7
+Change Net Name : Old Net Name=NetC12_2 New Net Name=NetADC 3_4
+Change Net Name : Old Net Name=NetC13_2 New Net Name=NetADC 3_5
+Change Net Name : Old Net Name=NetC14_2 New Net Name=NetADC 3_6
+Change Net Name : Old Net Name=NetC15_2 New Net Name=NetADC 3_7

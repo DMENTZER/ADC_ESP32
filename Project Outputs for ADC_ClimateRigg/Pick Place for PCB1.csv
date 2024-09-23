@@ -1,0 +1,94 @@
+Altium Designer Pick and Place Locations
+C:\Dev\Altium\ADC_ESP32\ADC_ESP32\Project Outputs for ADC_ClimateRigg\Pick Place for PCB1.csv
+
+========================================================================================================================
+File Design Information:
+
+Date:       23-09-24
+Time:       12:52
+Revision:   5ffe9c3e1f0d8d6ea50c4fcf04652e51e3fc3d82
+Variant:    No variations
+Units used: mm
+
+"Designator","Comment","Layer","Footprint","Center-X(mm)","Center-Y(mm)","Rotation","Description"
+"D1","TVS","TopLayer","DO-214AA_P6SMB","153.5000","39.0000","0","jlc: C78395"
+"R23","100k","TopLayer","Res_0603","148.8000","44.0000","0",""
+"Q6","AO3401A","TopLayer","AO-SOT-23-3L_V","152.1000","43.0000","0","P-Channel MOSFET, 30 V, 4 A, -55 to 150 degC, 3-Pin SOT-23-3L, RoHS, Tape and Reel"
+"C16","UWX1C100MCL2GB","TopLayer","FP-UWX1C100MCL2GB-MFG","153.3000","49.3000","0","UWX1C100MCL2GB WX Series 10 uF 16 V 85°C Ø3 x 5.4 mm SMT Chip Aluminum Electrolytic Cap"
+"JUMP3","Solder jumper","TopLayer","jumper","115.5000","52.0055","270",""
+"JUMP2","Solder jumper","TopLayer","jumper","116.7000","51.9945","270",""
+"JUMP1","Solder jumper","TopLayer","jumper","117.9000","51.9945","270",""
+"R10","10k","TopLayer","Res_0603","106.4000","38.3000","270","C25804"
+"R9","10k","TopLayer","Res_0603","111.4000","38.3000","270","C25804"
+"R5","10k","TopLayer","Res_0603","147.8000","38.3000","270","C25804"
+"R11"," 9.1k ATS","TopLayer","Res_0603","142.6000","44.0000","0","ATS
+Thermistor: 270-333k
+R11: 9.1k"
+"R4","10k","TopLayer","Res_0603","129.9000","42.6000","0","C25804"
+"R8","10k","TopLayer","Res_0603","124.6000","38.3000","270","C25804"
+"R2","10k","TopLayer","Res_0603","129.9000","44.0000","0","C25804"
+"R3","10k","TopLayer","Res_0603","127.8000","50.0000","90","C25804"
+"R1","10k","TopLayer","Res_0603","132.8000","50.0000","90","C25804"
+"R7","10k","TopLayer","Res_0603","129.6000","38.3000","270","C25804"
+"R6","10k","TopLayer","Res_0603","142.8000","38.3000","270","C25804"
+"R12","5.1k MTS","TopLayer","Res_0603","139.6000","44.0000","180","MTS
+Thermistor: 103k
+R12: 5.1k"
+"R19","DTS_5","TopLayer","Res_0603","106.1000","44.0000","0","DTS_5
+Thermistor: 101k
+R19: 5.1k"
+"R16","DTS_2","TopLayer","Res_0603","121.4000","44.0000","180","DTS_2
+Thermistor: 101k
+R16: 5.1k"
+"R15","5.1k","TopLayer","Res_0603","124.4000","44.0000","0","DTS_1
+Thermistor: 101k
+R15: 5.1k"
+"R18","DTS_4","TopLayer","Res_0603","115.4000","44.0000","180","DTS_4
+Thermistor: 101k
+R18: 5.1k"
+"R21","DTS_7","TopLayer","Res_0603","100.1000","44.0000","0","DTS_7
+Thermistor: 101k
+R21: 5.1k"
+"R22","DTS_8","TopLayer","Res_0603","97.1000","44.0000","180","DTS_8
+Thermistor: 101k
+R22: 5.1k"
+"R13","3.3k HEX","TopLayer","Res_0603","136.6000","44.0000","0","HEX
+Thermistor: 96k
+R13: 3.3k"
+"R20","DTS_6","TopLayer","Res_0603","103.1000","44.0000","180","DTS_6
+Thermistor: 101k
+R20: 5.1k"
+"R17","DTS_3","TopLayer","Res_0603","118.4000","44.0000","0","DTS_3
+Thermistor: 101k
+R17: 5.1k"
+"R14","3.3k EVAP","TopLayer","Res_0603","133.6000","44.0000","180","EVAP
+Thermistor: 96k
+R14: 3.3k"
+"J3","kontakt 5p 5.08","TopLayer","Kontakt_5P_3.5","100.4990","57.4965","180",""
+"J2","kontakt 5p 5.08","TopLayer","Kontakt_5P_3.5","119.6020","57.4965","180",""
+"J1","kontakt 5p 5.08","TopLayer","Kontakt_5P_3.5","138.6328","57.5355","180",""
+"J6","kontakt 2p 5.08","TopLayer","Kontakt_2P_5.08","154.5590","55.7530","180",""
+"Q5","AO3400A","TopLayer","FP-SOT23-MFG","108.9000","38.7000","180","MOSFET N-CH 30V 5.7A SOT23"
+"Q4","AO3400A","TopLayer","FP-SOT23-MFG","127.1000","38.7000","180","MOSFET N-CH 30V 5.7A SOT23"
+"Q3","AO3400A","TopLayer","FP-SOT23-MFG","145.3000","38.7000","180","MOSFET N-CH 30V 5.7A SOT23"
+"Q2","AO3400A","TopLayer","FP-SOT23-MFG","130.3000","50.3000","0","MOSFET N-CH 30V 5.7A SOT23"
+"Q1","AO3400A","TopLayer","FP-SOT23-MFG","135.3000","50.4000","0","MOSFET N-CH 30V 5.7A SOT23"
+"ADC 3","ADS1115","TopLayer","TSSOP50P490X110-10N_ADS1115","101.8000","38.7000","180","4-Channel Single ADC Delta-Sigma 860sps 16-bit Serial 10-Pin VSSOP T/R"
+"ADC 2","ADS1115","TopLayer","TSSOP50P490X110-10N_ADS1115","120.1000","38.7000","180","4-Channel Single ADC Delta-Sigma 860sps 16-bit Serial 10-Pin VSSOP T/R"
+"ADC 1","ADS1115","TopLayer","TSSOP50P490X110-10N_ADS1115","138.3000","38.7000","180","4-Channel Single ADC Delta-Sigma 860sps 16-bit Serial 10-Pin VSSOP T/R"
+"U1","ESP32 olimex PINOUT","TopLayer","ESP32_OLIMEX_POE","125.5776","41.6250","90",""
+"C15","C0603","TopLayer","Cap_0603","97.1000","42.6000","0",""
+"C14","C0603","TopLayer","Cap_0603","100.1000","42.6000","180",""
+"C13","C0603","TopLayer","Cap_0603","103.1000","42.6000","0",""
+"C12","10uf","TopLayer","Cap_0603","106.1000","42.6000","180",""
+"C11","0.1uF","TopLayer","Cap_0603","101.9000","36.1000","180",""
+"C10","C0603","TopLayer","Cap_0603","115.4000","42.6000","0",""
+"C9","C0603","TopLayer","Cap_0603","118.4000","42.6000","180",""
+"C8","C0603","TopLayer","Cap_0603","121.4000","42.6000","0",""
+"C7","C0603","TopLayer","Cap_0603","124.4000","42.6000","180",""
+"C6","0.1uF","TopLayer","Cap_0603","120.1000","36.1000","180",""
+"C5","C0603","TopLayer","Cap_0603","133.6000","42.6000","0",""
+"C4","C0603","TopLayer","Cap_0603","136.6000","42.6000","180",""
+"C3","C0603","TopLayer","Cap_0603","139.6000","42.6000","0",""
+"C2","C0603","TopLayer","Cap_0603","142.6000","42.6000","180",""
+"C1","0.1uF","TopLayer","Cap_0603","138.2000","36.1000","180",""
